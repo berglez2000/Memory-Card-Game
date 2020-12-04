@@ -18,7 +18,24 @@ window.addEventListener("load", (event) => {
         });    
     }
 
-    // Flip cards
-    
+    shuffleCards();
 
+    // Flip cards
+    cards.forEach((card, index) => {
+        const backCard = card.children[0];
+        const frontCard = card.children[1];
+
+        backCard.addEventListener("click", () => {
+            // Flip animation
+            if (backCard.style.animation){
+                backCard.style.animation = "";
+            } else {
+                backCard.style.animation = "flipCard 0.5s ease forwards";
+            }
+            window.addEventListener("animationend", () => {
+                backCard.classList.toggle("hide");
+                frontCard.classList.toggle("hide");
+            });
+        });
+    });
 });

@@ -61,12 +61,22 @@ body {
   transition: all 0.5s ease;
 }
 
-.app .card img {
+.app .card .front-face {
   width: 230px;
   height: auto;
 }
 
-.app .card .front-face {
+.app .card .back-face {
+  width: 230px;
+  height: auto;
+}
+
+.app .card .front-face.hide {
+  display: none;
+  pointer-events: none;
+}
+
+.app .card .back-face.hide {
   display: none;
   pointer-events: none;
 }

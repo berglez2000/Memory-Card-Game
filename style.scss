@@ -32,11 +32,19 @@ body {
       transform: scale(1.1);
       transition: all 0.5s ease;
     }
-    img {
+    .front-face {
       width: 230px;
       height: auto;
     }
-    .front-face {
+    .back-face {
+      width: 230px;
+      height: auto;
+    }
+    .front-face.hide {
+      display: none;
+      pointer-events: none;
+    }
+    .back-face.hide {
       display: none;
       pointer-events: none;
     }
