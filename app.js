@@ -6,6 +6,23 @@ window.addEventListener("load", (event) => {
     let allCards = ["angular", "css", "nodejs", "python", "udemy", "vue", "angular", "css", "nodejs", "python", "udemy", "vue"];
     const frontCards = document.querySelectorAll(".front-face");
     const backCards = document.querySelectorAll(".back-face");
+    let openedCards = [];
+    let correctCards = [];
+
+
+    const checkCards = () => {
+        cards.forEach(card => {
+            const frontCard = card.children[1];
+            const backCard = card.children[0];
+
+            if (backCard.classList.contains("hide")){
+                if (openedCards.includes(frontCard.src)){
+                    backCard.classList.toggle("hide");
+                    frontCard.classList.toggle("hide");
+                }
+            }
+        });
+    }
 
 
     // Shuffle Cards
@@ -32,10 +49,27 @@ window.addEventListener("load", (event) => {
             } else {
                 backCard.style.animation = "flipCard 0.5s ease forwards";
             }
-            window.addEventListener("animationend", () => {
-                backCard.classList.toggle("hide");
-                frontCard.classList.toggle("hide");
-            });
+
+            // Show front-face
+            backCard.classList.toggle("hide");
+            frontCard.classList.toggle("hide");
+            // Append to array
+            openedCards.push(frontCard.src);
+
+            if (openedCards.length === 2){
+                if (openedCards[0] === openedCards[1]){
+                    // Same cards
+                    console.log("You found two same cards");
+                    correctCards.push(openedCards[0], openedCards[1]);
+                    openedCards.splice(0, openedCards.length);
+                    
+                } else{
+                    //Diffrent cards
+                    console.log("You didn't found same cards");
+                    checkCards();
+                    openedCards.splice(0, openedCards.length);
+                }
+            }
         });
     });
 });
